@@ -1,0 +1,209 @@
+/////practical sheet 7 ////
+
+
+
+01.item
+   location
+02.desc item;
+03.exit;
+04.select *
+   from item;
+05. select *
+   from location;
+06.select *
+   from store;
+07.select itm_description,itm_unit_price
+    from item;
+08.select st_item_code
+   from store;
+09.select distinct(St_itm_code)
+   from store;
+10.select itm_description,itm_unit_price
+   from item
+   order by itm_unit_price dsc;
+11.select st_item_code,st_qty
+   from store
+   order by st_itm_code asc;
+
+   select st_item_code,st_qty
+   from store
+   order by st_itm_code dsc;
+12.select *
+   from item
+   where itm_unit_price>20000;
+13.select st_itm_code
+    from store
+    where st_location_code='L01';
+14. select *
+    from item
+    where itm_description like 'T%';
+15.select *
+    from item
+    where itm_description like '%er';
+16.select itm_description
+   from item
+   where itm_supplier='Dell' or itm_supplier='LG' or itm_supplier='HP';
+17.select itm_code,itm_description
+    from item;
+    where itm_suppliers is not null;
+18.select itm_code,itm_description
+    from item;
+    where itm_suppliers is null;
+
+19.select itm_description,loc_name,st_qty
+   from location
+   inner join store
+   on location.loc_code=store=st_location_code
+   where itm_unit_price<=20000;
+
+20.select st_item_code,loc_name,st_qty
+   from location
+   inner join store
+   on location.loc_code=store.st_location_code;
+21.select itm_description
+   from item;
+   select loc_name
+   from location;
+22.select count(item_code)
+   from item;
+23.select sum(st_qty)
+   from store;
+
+
+  ///practical 08///
+
+
+
+
+
+
+24.show databases;
+25. show table;
+26.select *
+   from item;
+27.select *
+   from location;
+28.select *
+   from store;
+29.desc item;
+   desc location;
+   desc store;
+30.create table sales(
+    sa_trans_no varchar(10),
+    sa_item_code varchar(10),
+    sa_loction_code varchar(10),
+    sa_sales_qty int,
+    sa_date_of_sale date,
+    PRIMARY KEY(sa_trans_no)
+);
+31.DESC item;
+32.insert into sales
+   values('1','IT10','L01',3,'2016-05-02'),
+          ('2','IT10','L03',1,'2016-05-12'),
+          ('3','IT13','L04',15,'2016-04-07'),
+          ('4','IT11','L01',12,'2016-04-15'),
+          ('5','IT11','L02',5,'2016-07-12');
+33.select it_description,it_unit_price
+   from item;
+34.select st_item_code
+   from store;
+35.select distinct(st_item_code)
+   from store;
+36.select count(st_qty)
+   from store;
+37.select *
+   from item
+   limit 5;
+38.select itm_description,itm_unit_price
+   from item
+   order by itm_unit_price
+   limit 5;
+39.select it_description
+   from item
+   where itm_supplier in('Dell','HP','LG')
+   order by itm_unit_price;
+40.select *
+   from item
+   where itm_unit_price>20000;
+41.select itm_description
+   from item
+   where itm_code between 'IT10' and 'IT19';
+42.select *
+    from item
+    where itm_description like '%er';
+43.select *
+    from item
+    where itm_description like '%er%';
+44.select itm_description
+   from item
+   where itm_code<'IT10';
+
+45.select itm_description
+   from item
+   where st_itm_code in(
+      select st_itm_code
+      from location
+      where st_location_code in('L01','L04')
+);
+46.select itm_description,itm_unit_price
+from item
+inner join store
+on item.itm_code=store.st_item_code
+where st_location_code='L02' or 'L04'
+order by itm_unit_price desc
+);
+47.select itm_description,itm_unit_price,loc_code
+   from store
+   inner join item
+   on item.itm_code=store.st_item_code
+   where st_location_code desc;
+48.select  count(distinct loc_name)
+   from location;
+
+49.select sum(sa_sales_qty)
+   from sales
+   where sa_item_code='IT10';
+
+50.select max(it_unit_price)
+   from item;
+51.select it_description
+   from item
+   where max(it_unit_price);
+52.select it_description
+   from item
+   inner join sales
+   on item.item_code=sales.sa_item_code
+   where sa_date_of_sale between '2016-05-01' and '2016-05-31';
+
+53.select sum((60000*5*10)/100);
+
+54.select sum(sa_sales_qty*it_unit_price)
+   from item
+   inner join sales
+   on item.item_code=sales.sa_item_code
+   where item_code='IT11' and sa_loction_code='L01';
+   
+55.update location
+   set loc_name='Karapitiya'
+   where loc_code='L03';
+
+56.update item
+   set it_unit_price=it_unit_price+500
+   where item_code in ('IT10','IT11');
+
+57.select item_code,it_description
+   from item
+   where it_supplier is not null;
+
+58.select it_description,st_location_code,st_qty
+   from item
+   inner join store
+   on item.item_code=store.st_item_code
+   where it_supplier is null;
+59.select loc_name,st_qty
+   from location
+   inner join store
+   on location.loc_name=store.st_location_code
+   where st_location in('L01');
+
+   
