@@ -1,0 +1,93 @@
+2022.8.20 PT1
+
+mysql -u root -p 
+password 1234
+
+SELECT VERSION();
+
+SHOW DATABASES;
+
+CREATE DATABASE COMPANY;
+
+USE COMPANY;
+
+SHOW TABLES;
+
+CREATE TABLE employee(
+	emp_no INT AUTO_INCREMENT,
+	name VARCHAR(20) NOT NULL,
+	gender CHAR(1),
+	dob DATE,
+	salary FLOAT(7,2),
+	PRIMARY KEY(emp_no)
+	);
+DESC employee;
+
+SELECT * FROM employee;
+
+SELECT emp_np,name FROM employee;
+
+SELECT "Nuwan";
+
+SELEct 8+3;
+
+INSERT INTO employee(emp_no,name,gender,dob,salary)
+VALUES(1,'Silva','M','1986-03-25',55000.00);
+
+INSERT INTO employee
+VALUES(2,'Zoysa','F','1983-06-07',48000.00);
+
+SELECT name,dob FROM employee;
+
+INSERT INTO employee
+     (name,gender,dob,salary)
+     VALUES('Fonseka','M','1979-04-19',64000.00);
+
+INSERT INTO employee
+     (name,gender,dob,salary)
+    VALUES('Fernando','M','1975-04-19',50000.00),
+	     ('Perera','F','1978-05-23',72000.00),
+	     ('Liyanage','M','1986-04-19',80000.00);
+
+INSERT INTO employee
+     (emp_no,name,gender,dob,salary)
+     VALUES(10,'Ravindu','M','2002-04-9',55000.00);
+
+INSERT INTO employee
+     (name,gender,dob,salary)
+    VALUES('Liyanage','M','1986-04-19',80000.00);
+
+DELETE FROM employee;
+
+DROP TABLE employee;
+
+DROP DATABASE company;
+
+DELETE FROM employee WHERE emp_no=11;
+
+INSERT INTO employee
+    ->      (name,gender,dob,salary)
+    ->     VALUES('batuwitage','M','1986-04-19',89900.00);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM employee;
++--------+------------+--------+------------+----------+
+| emp_no | name       | gender | dob        | salary   |
++--------+------------+--------+------------+----------+
+|      1 | Silva      | M      | 1986-03-25 | 55000.00 |
+|      2 | Zoysa      | F      | 1983-06-07 | 48000.00 |
+|      3 | Fonseka    | M      | 1979-04-19 | 64000.00 |
+|      4 | Fernando   | M      | 1975-04-19 | 50000.00 |
+|      5 | Perera     | F      | 1978-05-23 | 72000.00 |
+|      6 | Liyanage   | M      | 1986-04-19 | 80000.00 |
+|     12 | batuwitage | M      | 1986-04-19 | 89900.00 |
++--------+------------+--------+------------+----------+
+
+consider please 12
+
+
+
+What can happened if drop with data 
+
+
+

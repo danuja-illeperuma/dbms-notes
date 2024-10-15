@@ -1,0 +1,42 @@
+mysql> SELECT CONCAT(YEAR(CURDATE())-2002) AS My_age;
+mysql> USE mysql;
+mysql> SELECT host , user FROM user;
+
+CREATE USER "ICT_admin"@"localhost"
+IDENTIFIED BY 'adminpwd';
+
+CREATE USER "ICT_guest"@"localhost";
+
+create user "Ravindu"@"localhost"
+identified by "123";
+
+SHOW GRANTS FOR "root"@"localhost";
+SHOW GRANTS FOR "ICT_admin"@"localhost";
+
+GRANT ALL PRIVILEGES ON *.*  
+TO "ICT_admin"@"localhost"
+WITH GRANT OPTION;
+
+*.* = ALL DATABASE AND TABLE
+MY_DB,employee
+
+GRANT SELECT,INSERT ON *.*  
+TO "ICT_guest"@"localhost"
+
+GRANT SELECT,INSERT,UPDATE,DROP ON *.*  
+TO "ICT_guest"@"localhost
+
+FLUSH privileges;
+
+DROP USER "ICT_user"@"localhost";
+
+GRANT ALL PRIVILEGES ON tecict.*
+    -> to 'admin_ICT'@'localhost';
+
+
+
+
+
+
+
+

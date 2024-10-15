@@ -1,0 +1,128 @@
+Update student
+set gender = "F"
+where regno ="ICT001";
+
+Update student
+set gender = "M"
+where regno ="ICT005";
+
+Update student
+set gender = "F",
+dob="1997-05-23"
+where regno ="ICT003";
+
+Update student
+set gender = "M"
+where regno ="ICT001";
+
+Update student
+set gender = "M"
+
+Update student
+set gender = "F"
+where regno ="ICT002";
+
+Update student
+set gender = "M"
+where regno ="ICT003";
+
+Update student
+set gender = "F"
+where regno ="ICT005";
+
+Delete from  student
+where regno="ICT006" or regno="ICT007"
+
+Select Min(finalmarks)
+from mark;
+
+Delete from  mark
+where regno="ICT006"
+
+Select Max(finalmarks) as Maximum_Marks
+from mark;
+
+Select count(regno)
+from mark;
+
+Select finalmarks > 50
+from mark;
+
+Select regno
+from mark
+where finalmarks > 50;
+
+Select count(regno)
+from mark
+where finalmarks > 50;
+
+Select Avg(finalmarks) 
+from mark;
+
+Select Sum(finalmarks)/count(finalmarks)as Average
+from mark;
+
+Select Max(finalmarks)-Min(finalmarks)as Differns 
+from mark;
+
+Select finalmarks > 50
+from mark;
+
+Select count(if (finalmarks >50,1,null))
+from mark;
+
+find average of highiest marks 4
+
+Select (sum(finalmarks)-min(finalmarks))/(count(finalmarks)-1)
+from mark;
+
+select greatest(28,99,50,66);
+
+select greatest(28,99,50,66,null);
+
+select least(28,99,50,66);
+
+select sum(if(isnull(gender)=1,1,0))
+from student;
+
+select sum(isnull(gender))
+	from student;
+
+select count(distinct gender)
+	from student;
+
+if has null not get count
+hw count with null value;(exam)
+
+
+select * from student
+where gender="m"
+limit 2;
+
+select * from student
+limit 2;
+
+select regno as "Registraction No",concat(Stu_name,",",gender) as "Basic Data"from student;
+
+select concat(Stu_name,",",gender) as "Basic Data"from student;
+
+select concat(Stu_name,",",gender) as "Basic Data"from student
+where regno="ICT001";
+
+Update student
+set gender = null
+where regno ="ICT005";
+
+ALTER TABLE student
+MODIFY gender CHAR(1) NULL;
+
+if have null value find hw(exam)
+
+select regno as "Registration No",concat(Stu_name,",",gender) as "Basic Data"
+from student;
+
+select year(curdate());
+
+select regno as "Registration No",Stu_name as "Student Name",dob as "Date of Birth" , gender as Gender, ( year(curdate())-year(dob)) as age  from student;
+
+select regno as "Registration No",Stu_name as "Student Name",dob as "Date of Birth" , gender as Gender, ( year(now())-year(dob)) as age  from student;

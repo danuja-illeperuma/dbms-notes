@@ -1,0 +1,92 @@
+SELECT * From student WHERE RegNo ='ICT001';
+
+SELECT * From student WHERE Dob = "1997-06-15";
+
+SELECT RegNo,Dob,gender From student WHERE StuName ="B.A Jayaranga";
+
+SELECT FinalMarks,grade From Marks WHERE RegNo ='ICT001';
+
+SELECT * FROM student WHERE Dob < '1998-01-01';
+
+INSERT INTO student (RegNo,StuName,Dob)
+VALUES("ICT006","H.X.Y Saman","1996-05-25");
+
+INSERT INTO Marks
+VALUES("ICT006",75,"A");
+
+DELETE FROM student WHERE RegNo="ICT006";
+
+
+SELECT * FROM student WHERE gender IS NULL;
+
+SELECT * FROM student WHERE gender IS not NULL;
+
+SELECT  1 IS NULL,1 IS NOT NULL;
+
+SELECT 1 = NULL,1<>NULL1<NULL,1>NULL;
+
+SELECT * FROM student where Dob="1997-06-15";
+
+
+space is value for MySQL
+
+SELECT * FROM student WHERE RegNo='ICT001' AND RegNo='ICT003';
+
+Find mail 1997 before
+
+SELECT * FROM student WHERE Dob <'1997.01.01' AND gender='Male';
+
+SELECT * FROM student WHERE Dob >'1997.01.01' or gender='Male';
+
+SELECT * FROM student WHERE RegNo='ICT001' or RegNo='ICT003';
+
+SELECT * FROM student WHERE NOT gender='Male';
+
+SELECT * FROM student WHERE  (gender='Male' or  gender='Female') AND Dob >'1997.01.01' ;
+
+SELECT * FROM student WHERE  Dob >'1997.01.01' AND NOT gender="Male";
+
+check privileges and use
+
+SELECT * FROM student WHERE StuName LIKE 'a%';
+find any values start with a
+
+SELECT * FROM student WHERE StuName LIKE '%a';
+find any values end with a
+
+SELECT * FROM student WHERE StuName LIKE '%or%';
+find any values or any position
+
+SELECT * FROM student WHERE StuName LIKE '__r%';
+find any values r in second place
+
+SELECT * FROM student WHERE StuName LIKE 'a_%_%';
+find any values start with a and are at least 3 characters
+
+SELECT * FROM student WHERE StuName LIKE 'a%o';
+find any values start with a and end with o
+
+SELECT * FROM student WHERE RegNo IN ('ICT001','ICT003');
+
+
+SELECT * FROM Marks WHERE FinalMarks > 50;
+
+SELECT * FROM student WHERE RegNo IN (select RegNo from Marks where FinalMarks > 50);
+
+SELECT * FROM student WHERE RegNo IN (select RegNo from Marks where FinalMarks > 50);
+
+SELECT * FROM Marks WHERE FinalMarks BETWEEN 50 AND 70;
+
+SELECT * FROM Marks WHERE FinalMarks BETWEEN 80 AND 65;
+
+CAN USE with dates
+
+SELECT * FROM student ORDER BY Dob ASC;
+
+SELECT * FROM student ORDER BY gender DESC;
+
+SELECT * FROM student ORDER BY Dob,RegNo,gender DESC;
+
+
+
+
