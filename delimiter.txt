@@ -1,0 +1,364 @@
+Microsoft Windows [Version 10.0.22000.2538]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\ICT_Common>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.33 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database myprocedure;
+Query OK, 1 row affected (0.07 sec)
+
+mysql> use myprocedure;
+Database changed
+mysql> create table project(
+    -> p_code char(10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> create table project(
+    -> p_code char(10) primary key,
+    -> p_location varchar(20),
+    -> p_description varchar(20)
+    -> );
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> create table work(
+    -> w_p_code char(10) primary key,
+    -> w_leader varchar(20),
+    -> w_budget decimal(10,3),
+    -> w_person int,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 6
+mysql> create table work(
+    -> w_p_code char(10) primary key,
+    -> w_leader varchar(20),
+    -> w_budget decimal(10,3),
+    -> w_person int
+    -> );
+Query OK, 0 rows affected (0.58 sec)
+
+mysql> insert into project
+    -> values("p01","ABC Company","payroll"),
+    -> ("p02","Simaya Hotel","Room booking system"),
+    -> ("p03","XYZ Traders","Point of sale system"),
+    -> ("p04","cp holding","Hrm system");
+Query OK, 4 rows affected (0.09 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into work
+    -> values("p01","silva",0.75,12),
+    -> ("p02","gamage",5,22),
+    -> ("p03","perera",2,7),
+    -> ("p05","gamage",1.5,26);
+Query OK, 4 rows affected (0.04 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> alter table work add foreign key(w_p_code) references project(p_code);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`myprocedure`.`#sql-1304_a`, CONSTRAINT `work_ibfk_1` FOREIGN KEY (`w_p_code`) REFERENCES `project` (`p_code`))
+mysql> alter table work add;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> desc work;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| w_p_code | char(10)      | NO   | PRI | NULL    |       |
+| w_leader | varchar(20)   | YES  |     | NULL    |       |
+| w_budget | decimal(10,3) | YES  |     | NULL    |       |
+| w_person | int           | YES  |     | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table work add foreign key(w_p_code) references project(p_code);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`myprocedure`.`#sql-1304_a`, CONSTRAINT `work_ibfk_1` FOREIGN KEY (`w_p_code`) REFERENCES `project` (`p_code`))
+mysql> drop table work;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql>        create table work(
+    ->        w_p_code char(10) primary key,
+    ->        w_leader varchar(20),
+    ->        w_budget decimal(10,3),
+    ->        w_person int,
+    ->        foreign key(w_p_code) references project(p_code);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 6
+mysql>       );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table work(
+    -> w_p_code char(10) primary key,
+    -> w_leader varchar(20),
+    -> w_budget decimal(10,3),
+    -> w_person int,
+    -> foreign key(w_p_code) references project(p_code)
+    -> );
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> desec work;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desec work' at line 1
+mysql> desc work;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| w_p_code | char(10)      | NO   | PRI | NULL    |       |
+| w_leader | varchar(20)   | YES  |     | NULL    |       |
+| w_budget | decimal(10,3) | YES  |     | NULL    |       |
+| w_person | int           | YES  |     | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into work
+    -> values("p01","silva",0.75,12),
+    -> ("p02","gamage",5,22),
+    -> ("p03","perera",2,7),
+    -> ("p05","gamage",1.5,26);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`myprocedure`.`work`, CONSTRAINT `work_ibfk_1` FOREIGN KEY (`w_p_code`) REFERENCES `project` (`p_code`))
+mysql> insert into work
+    -> values("p01","silva",0.75,12),
+    -> ("p02","gamage",5,22),
+    -> ("p03","perera",2,7),
+    -> ("p05","gamage",1.5,26);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`myprocedure`.`work`, CONSTRAINT `work_ibfk_1` FOREIGN KEY (`w_p_code`) REFERENCES `project` (`p_code`))
+mysql> drop table work;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table work(
+    -> w_p_code char(10) primary key,
+    -> w_leader varchar(20),
+    -> w_budget decimal(10,3),
+    -> w_person int,
+    ->
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 7
+mysql> create table work(
+    -> w_p_code char(10) primary key,
+    -> w_leader varchar(20),
+    -> w_budget decimal(10,3),
+    -> w_person int
+    ->
+    -> );
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> insert into work
+    -> values("p01","silva",0.75,12),
+    -> ("p02","gamage",5,22),
+    -> ("p03","perera",2,7),
+    -> ("p05","gamage",1.5,26);
+Query OK, 4 rows affected (0.04 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> alter table work add foreign key(w_p_code) references project(p_code);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`myprocedure`.`#sql-1304_a`, CONSTRAINT `work_ibfk_1` FOREIGN KEY (`w_p_code`) REFERENCES `project` (`p_code`))
+mysql> desc work;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| w_p_code | char(10)      | NO   | PRI | NULL    |       |
+| w_leader | varchar(20)   | YES  |     | NULL    |       |
+| w_budget | decimal(10,3) | YES  |     | NULL    |       |
+| w_person | int           | YES  |     | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc project;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| p_code        | char(10)    | NO   | PRI | NULL    |       |
+| p_location    | varchar(20) | YES  |     | NULL    |       |
+| p_description | varchar(20) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> drop table work;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> create table work(
+    -> w_p_code char(10) primary key,
+    -> w_leader varchar(20),
+    -> w_budget decimal(10,3),
+    -> w_person int,
+    -> foreign key(w_p_code) references project(p_code)
+    ->
+    -> );
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> select * from project;
++--------+--------------+----------------------+
+| p_code | p_location   | p_description        |
++--------+--------------+----------------------+
+| p01    | ABC Company  | payroll              |
+| p02    | Simaya Hotel | Room booking system  |
+| p03    | XYZ Traders  | Point of sale system |
+| p04    | cp holding   | Hrm system           |
++--------+--------------+----------------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into work
+    -> values("p01","silva",0.75,12),
+    -> ("p02","gamage",5,22),
+    -> ("p03","perera",2,7),
+    -> ("p04","gamage",1.5,26);
+Query OK, 4 rows affected (0.04 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> delimiter //
+mysql> create procedure my_first_procedure()
+    -> begin
+    -> select "this my first mysql stored procedure";
+    -> select "my name is danuja";
+    -> end//
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> delimiter ;
+mysql> call my_first_procedure();
++--------------------------------------+
+| this my first mysql stored procedure |
++--------------------------------------+
+| this my first mysql stored procedure |
++--------------------------------------+
+1 row in set (0.05 sec)
+
++-------------------+
+| my name is danuja |
++-------------------+
+| my name is danuja |
++-------------------+
+1 row in set (0.06 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> delimiter //
+mysql> create procedure display_projects()
+    -> begin
+    -> select * from project;
+    -> end//
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> delimiter ;
+mysql> call display_projects();
++--------+--------------+----------------------+
+| p_code | p_location   | p_description        |
++--------+--------------+----------------------+
+| p01    | ABC Company  | payroll              |
+| p02    | Simaya Hotel | Room booking system  |
+| p03    | XYZ Traders  | Point of sale system |
+| p04    | cp holding   | Hrm system           |
++--------+--------------+----------------------+
+4 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from work;
++----------+----------+----------+----------+
+| w_p_code | w_leader | w_budget | w_person |
++----------+----------+----------+----------+
+| p01      | silva    |    0.750 |       12 |
+| p02      | gamage   |    5.000 |       22 |
+| p03      | perera   |    2.000 |        7 |
+| p04      | gamage   |    1.500 |       26 |
++----------+----------+----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create procedure display_person()
+    -> begin
+    -> select *from work where w_person > 8;
+    -> end//
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> call display_person//
++----------+----------+----------+----------+
+| w_p_code | w_leader | w_budget | w_person |
++----------+----------+----------+----------+
+| p01      | silva    |    0.750 |       12 |
+| p02      | gamage   |    5.000 |       22 |
+| p04      | gamage   |    1.500 |       26 |
++----------+----------+----------+----------+
+3 rows in set (0.01 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> call display_person()//
++----------+----------+----------+----------+
+| w_p_code | w_leader | w_budget | w_person |
++----------+----------+----------+----------+
+| p01      | silva    |    0.750 |       12 |
+| p02      | gamage   |    5.000 |       22 |
+| p04      | gamage   |    1.500 |       26 |
++----------+----------+----------+----------+
+3 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create procedure display_person20()
+    -> begin
+    -> select * from work where w_person > 20;
+    -> end//
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> call display_person()//
++----------+----------+----------+----------+
+| w_p_code | w_leader | w_budget | w_person |
++----------+----------+----------+----------+
+| p01      | silva    |    0.750 |       12 |
+| p02      | gamage   |    5.000 |       22 |
+| p04      | gamage   |    1.500 |       26 |
++----------+----------+----------+----------+
+3 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call display_person20()//
++----------+----------+----------+----------+
+| w_p_code | w_leader | w_budget | w_person |
++----------+----------+----------+----------+
+| p02      | gamage   |    5.000 |       22 |
+| p04      | gamage   |    1.500 |       26 |
++----------+----------+----------+----------+
+2 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create procedure dis_person(IN no int)
+    -> begin
+    -> select *from work where w_person > no;
+    -> end//
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> call dis_person(20)//
++----------+----------+----------+----------+
+| w_p_code | w_leader | w_budget | w_person |
++----------+----------+----------+----------+
+| p02      | gamage   |    5.000 |       22 |
+| p04      | gamage   |    1.500 |       26 |
++----------+----------+----------+----------+
+2 rows in set (0.03 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> call dis_perosn(8)//
+ERROR 1305 (42000): PROCEDURE myprocedure.dis_perosn does not exist
+mysql> call dis_person(8)//
++----------+----------+----------+----------+
+| w_p_code | w_leader | w_budget | w_person |
++----------+----------+----------+----------+
+| p01      | silva    |    0.750 |       12 |
+| p02      | gamage   |    5.000 |       22 |
+| p04      | gamage   |    1.500 |       26 |
++----------+----------+----------+----------+
+3 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> ^C
+mysql> ^C
+mysql>
+
+
+set foreign_key_checks = 0;
